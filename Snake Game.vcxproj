@@ -142,10 +142,12 @@
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="MapCell.cpp" />
     <ClCompile Include="Snake Game.cpp" />
+    <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="MapCell.h" />
+    <ClInclude Include="Snake.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

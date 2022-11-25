@@ -1,11 +1,16 @@
 #pragma once
 #include "MapCell.h"
 
+#include "Snake.h"
 class GameMap
 {
 public:
-	GameMap();
+	GameMap(Snake* newSnakeReference);
 	void DrawMap();
-	MapCell cells[60][80];
+	void LoadMapFromFile();
+	MapCell cells[45][150];
+
+	Snake* snakeReference;
+	MapCell* snakeCell;
 };
 

@@ -6,13 +6,15 @@
 
 #include <iostream>
 #include "GameMap.h"
+#include "Snake.h"
 
 using namespace std;
 
 int main()
 {
 
-	GameMap map;
+	Snake mySnake;
+	GameMap map(&mySnake);
 
 	map.DrawMap();
 
