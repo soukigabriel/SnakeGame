@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="MapCell.cpp" />
     <ClCompile Include="Snake Game.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="MapCell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
