@@ -16,7 +16,13 @@ int main()
 	Snake mySnake;
 	GameMap map(&mySnake);
 
-	map.DrawMap();
+
+	while (!map.GetIsGameOver())
+	{
+		map.SetSnakeCell(mySnake.GetIcon());
+		map.DrawMap();
+		Sleep(500);
+	}
 
 	//for (int i = 0; i < 20; i++)
 	//{

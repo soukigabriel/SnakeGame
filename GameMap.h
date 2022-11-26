@@ -8,9 +8,16 @@ public:
 	GameMap(Snake* newSnakeReference);
 	void DrawMap();
 	void LoadMapFromFile();
-	MapCell cells[45][150];
+	MapCell cells[30][80];
 
+	void SetSnakeCell(char snakeIcon);
 	Snake* snakeReference;
 	MapCell* snakeCell;
+
+	bool GetIsGameOver();
+	void SetIsGameOver(bool gameOverState);
+
+protected:
+	bool isGameOver = false;
 };
 

@@ -13,14 +13,27 @@ GameMap::GameMap(Snake* newSnakeReference)
 
 void GameMap::DrawMap()
 {
-	for (int i = 0; i < 45; i++)
+	for (int i = 0; i < 30; i++)
 	{
-		for (int j = 0; j < 150; j++)
+		for (int j = 0; j < 80; j++)
 		{
 			cout << cells[i][j].GetId();
 		}
 		cout << endl;
 	}
+}
+
+void GameMap::SetSnakeCell(char snakeIcon)
+{
+	if (snakeCell != NULL)
+	{
+		snakeCell->SetId(' ');
+	}
+
+	snakeReference->SetPosition(snakeReference->GetX() + snakeReference->GetDirection(0),
+								snakeReference->GetY() + snakeReference->GetDirection(1));
+	snakeCell = &cells[snakeReference->GetY()][snakeReference->GetX()];
+	snakeCell->SetId(snakeIcon);
 }
 
 void GameMap::LoadMapFromFile()
@@ -51,4 +64,14 @@ void GameMap::LoadMapFromFile()
 	{
 		cout << "ERROR: MAP FILE COULD NOT BE LOADED" << endl;
 	}
+}
+
+bool GameMap::GetIsGameOver()
+{
+	return isGameOver;
+}
+
+void GameMap::SetIsGameOver(bool gameOverState)
+{
+	isGameOver = gameOverState;
 }
