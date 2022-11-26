@@ -10,7 +10,7 @@ public:
 	void LoadMapFromFile();
 	MapCell cells[30][80];
 
-	void SetSnakeCell(char snakeIcon);
+	int SetSnakeCell(char snakeIcon);
 	Snake* snakeReference;
 	MapCell* snakeCell;
 

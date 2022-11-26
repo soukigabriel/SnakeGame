@@ -24,17 +24,26 @@ void GameMap::DrawMap()
 	}
 }
 
-void GameMap::SetSnakeCell(char snakeIcon)
+int GameMap::SetSnakeCell(char snakeIcon)
 {
-	if (snakeCell != NULL)
+	if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsWall())
 	{
-		snakeCell->SetId(' ');
+		return 0;
+	}
+	else
+	{
+		if (snakeCell != NULL)
+		{
+			snakeCell->SetId(' ');
+		}
+
+		snakeReference->SetPosition(snakeReference->GetX() + snakeReference->GetDirection(0),
+									snakeReference->GetY() + snakeReference->GetDirection(1));
+		snakeCell = &cells[snakeReference->GetY()][snakeReference->GetX()];
+		snakeCell->SetId(snakeIcon);
+		return 1;
 	}
 
-	snakeReference->SetPosition(snakeReference->GetX() + snakeReference->GetDirection(0),
-								snakeReference->GetY() + snakeReference->GetDirection(1));
-	snakeCell = &cells[snakeReference->GetY()][snakeReference->GetX()];
-	snakeCell->SetId(snakeIcon);
 }
 
 void GameMap::LoadMapFromFile()

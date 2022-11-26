@@ -19,19 +19,23 @@ int main()
 
 	while (!map.GetIsGameOver())
 	{
-		map.SetSnakeCell(mySnake.GetIcon());
-		map.DrawMap();
-		Sleep(100);
-		mySnake.GetInput();
+		switch (map.SetSnakeCell(mySnake.GetIcon()))
+		{
+		case 0:
+			map.SetIsGameOver(true);
+			continue;
+			break;
+		case 1:
+				map.DrawMap();
+				Sleep(100);
+				mySnake.GetInput();
+			break;
+		default:
+			break;
+		}
 	}
 
-	//for (int i = 0; i < 20; i++)
-	//{
-	//	cout << i << endl;
-	//	Sleep(1000);
-	//}
-
-
+	cout << "Game over" << endl;
 
 	return 0;
 }

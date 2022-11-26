@@ -13,3 +13,13 @@ void MapCell::SetId(char newID)
 {
 	id = newID;
 }
+
+bool MapCell::IsWall()
+{
+	return id == 'X' ? true : false;
+}
+
+//bool MapCell::IsApple()
+//{
+//	retru
+//}
