@@ -21,7 +21,8 @@ int main()
 	{
 		map.SetSnakeCell(mySnake.GetIcon());
 		map.DrawMap();
-		Sleep(500);
+		Sleep(100);
+		mySnake.GetInput();
 	}
 
 	//for (int i = 0; i < 20; i++)
