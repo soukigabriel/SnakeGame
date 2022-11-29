@@ -39,7 +39,7 @@ int main()
 			break;
 		case 1:
 				map.DrawMap();
-				Sleep(100);
+				Sleep(200);
 				mySnake.GetInput();
 			break;
 		default:

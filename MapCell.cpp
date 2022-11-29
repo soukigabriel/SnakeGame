@@ -19,7 +19,7 @@ bool MapCell::IsWall()
 	return id == 'X' ? true : false;
 }
 
-//bool MapCell::IsApple()
-//{
-//	retru
-//}
+bool MapCell::IsApple()
+{
+	return id == 'A' ? true : false;
+}

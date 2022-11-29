@@ -35,6 +35,11 @@ int GameMap::SetSnakeCell(char snakeIcon)
 	}
 	else
 	{
+		if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsApple())
+		{
+			SetRandomAppleCell();
+		}
+
 		if (snakeCell != NULL)
 		{
 			snakeCell->SetId(' ');

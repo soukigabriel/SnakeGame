@@ -34,12 +34,42 @@ void Snake::GetInput()
 {
 	char input = ' ';
 
-	if (_kbhit())
+	//if (_kbhit())
+	//{
+	//	input = _getch();
+	//	switch (input)
+	//	{
+	//	case 'w':
+	//		if (movementDirection[1] == 1) break;
+	//		movementDirection[0] = 0;
+	//		movementDirection[1] = -1;
+	//		break;
+	//	case 's':
+	//		if (movementDirection[1] == -1) break;
+	//		movementDirection[0] = 0;
+	//		movementDirection[1] = 1;
+	//		break;
+	//	case 'd':
+	//		if (movementDirection[0] == -1) break;
+	//		movementDirection[0] = 1;
+	//		movementDirection[1] = 0;
+	//		break;
+	//	case 'a':
+	//		if (movementDirection[0] == 1) break;
+	//		movementDirection[0] = -1;
+	//		movementDirection[1] = 0;
+	//		break;
+	//	default:
+	//		break;
+	//	}
+	//}
+
+	while (_kbhit())
 	{
 		input = _getch();
-		//cin.clear();
-		switch (input)
-		{
+	}
+	switch (input)
+	{
 		case 'w':
 			if (movementDirection[1] == 1) break;
 			movementDirection[0] = 0;
@@ -62,7 +92,6 @@ void Snake::GetInput()
 			break;
 		default:
 			break;
-		}
 	}
 }
 
