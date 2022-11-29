@@ -1,4 +1,4 @@
-#ifdef _WIN32
+﻿#ifdef _WIN32
 #include <Windows.h>
 #else
 #include <unistd.h>
@@ -12,6 +12,18 @@ using namespace std;
 
 int main()
 {
+	//char c = ' ';
+	//while (c != 'x')
+	//{
+	//	cin >> c;
+	//	cout << c << endl;
+	//}
+
+	//for (int i = 0; i < 256; i++)
+	//{
+	//	char c = i;
+	//	cout << i << ": " << c << endl;
+	//}
 
 	Snake mySnake;
 	GameMap map(&mySnake);

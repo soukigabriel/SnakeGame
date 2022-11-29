@@ -1,7 +1,9 @@
-#include "GameMap.h"
+﻿#include "GameMap.h"
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <ctime>
+
 
 using namespace std;
 
@@ -9,6 +11,7 @@ GameMap::GameMap(Snake* newSnakeReference)
 {
 	snakeReference = newSnakeReference;
 	LoadMapFromFile();
+	SetRandomAppleCell();
 }
 
 void GameMap::DrawMap()
@@ -43,7 +46,17 @@ int GameMap::SetSnakeCell(char snakeIcon)
 		snakeCell->SetId(snakeIcon);
 		return 1;
 	}
+}
 
+void GameMap::SetRandomAppleCell()
+{
+	int randX, randY;
+	srand(time(NULL));
+	do
+	{
+		AppleCell = &cells[randX = rand() % 28 + 1][randY = rand() % 78 + 1];
+	} while (AppleCell == snakeCell);
+	AppleCell->SetId('A');
 }
 
 void GameMap::LoadMapFromFile()
@@ -64,8 +77,12 @@ void GameMap::LoadMapFromFile()
 					snakeReference->SetPosition(i, row);
 					snakeCell = &cells[snakeReference->GetY()][snakeReference->GetX()];
 					snakeCell->SetId(snakeReference->GetIcon());
+					//snakeCell->SetId(line[i]);
 				}
-				cells[row][i].SetId(line[i]);
+				else
+				{
+					cells[row][i].SetId(line[i]);
+				}
 			}
 			row++;
 		}

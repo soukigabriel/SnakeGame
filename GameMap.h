@@ -14,6 +14,9 @@ public:
 	Snake* snakeReference;
 	MapCell* snakeCell;
 
+	MapCell* AppleCell;
+	void SetRandomAppleCell();
+
 	bool GetIsGameOver();
 	void SetIsGameOver(bool gameOverState);
 

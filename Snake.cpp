@@ -1,6 +1,8 @@
 #include "Snake.h"
 #include <iostream>
 #include <conio.h>
+#include <string>
+using namespace std;
 
 Snake::Snake()
 {
@@ -30,26 +32,31 @@ void Snake::SetPosition(int newX, int newY)
 
 void Snake::GetInput()
 {
-	//char input = ' ';
-	
+	char input = ' ';
+
 	if (_kbhit())
 	{
-		//std::cin >> input;
-		switch (_getch())
+		input = _getch();
+		//cin.clear();
+		switch (input)
 		{
 		case 'w':
+			if (movementDirection[1] == 1) break;
 			movementDirection[0] = 0;
 			movementDirection[1] = -1;
 			break;
 		case 's':
+			if (movementDirection[1] == -1) break;
 			movementDirection[0] = 0;
 			movementDirection[1] = 1;
 			break;
 		case 'd':
+			if (movementDirection[0] == -1) break;
 			movementDirection[0] = 1;
 			movementDirection[1] = 0;
 			break;
 		case 'a':
+			if (movementDirection[0] == 1) break;
 			movementDirection[0] = -1;
 			movementDirection[1] = 0;
 			break;
