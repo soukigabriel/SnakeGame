@@ -6,7 +6,7 @@ using namespace std;
 
 Snake::Snake()
 {
-
+	snakeLength = 0;
 }
 
 int Snake::GetX()
@@ -99,4 +99,14 @@ void Snake::GetInput()
 int Snake::GetDirection(int index)
 {
 	return movementDirection[index];
+}
+
+int Snake::GetSnakeLength()
+{
+	return snakeLength;
+}
+
+void Snake::IncreaseSnakeLenth()
+{
+	snakeLength++;
 }

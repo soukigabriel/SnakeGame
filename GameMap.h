@@ -12,10 +12,11 @@ public:
 
 	int SetSnakeCell(char snakeIcon);
 	Snake* snakeReference;
-	MapCell* snakeCell;
+	MapCell* snakeCell[2184];
 
 	MapCell* AppleCell;
 	void SetRandomAppleCell();
+	bool EvaluateAppelCell(MapCell* theCell);
 
 	bool GetIsGameOver();
 	void SetIsGameOver(bool gameOverState);

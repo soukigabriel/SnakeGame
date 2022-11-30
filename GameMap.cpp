@@ -21,7 +21,7 @@ void GameMap::DrawMap()
 	{
 		for (int j = 0; j < 80; j++)
 		{
-			cout << cells[i][j].GetId();
+			cout << cells[i][j].GetId() << ' ';
 		}
 		cout << endl;
 	}
@@ -29,7 +29,7 @@ void GameMap::DrawMap()
 
 int GameMap::SetSnakeCell(char snakeIcon)
 {
-	if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsWall())
+	if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsWall() || cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsSnake())
 	{
 		return 0;
 	}
@@ -37,18 +37,28 @@ int GameMap::SetSnakeCell(char snakeIcon)
 	{
 		if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsApple())
 		{
+			snakeReference->IncreaseSnakeLenth();
+			snakeCell[snakeReference->GetSnakeLength()] = snakeCell[snakeReference->GetSnakeLength() - 1];
 			SetRandomAppleCell();
 		}
 
-		if (snakeCell != NULL)
-		{
-			snakeCell->SetId(' ');
-		}
+		int snakeLength = snakeReference->GetSnakeLength();
+		//if (snakeCell != NULL)
+		//{
+		//	snakeCell[snakeLength]->SetId(' ');
+		//}
+		
+		snakeCell[snakeLength]->SetId(' ');
 
+		for (int i = snakeLength; i > 0; i--)
+		{
+			snakeCell[i] = snakeCell[i - 1];
+			snakeCell[i]->SetId(snakeIcon);
+		}
 		snakeReference->SetPosition(snakeReference->GetX() + snakeReference->GetDirection(0),
 									snakeReference->GetY() + snakeReference->GetDirection(1));
-		snakeCell = &cells[snakeReference->GetY()][snakeReference->GetX()];
-		snakeCell->SetId(snakeIcon);
+		snakeCell[0] = &cells[snakeReference->GetY()][snakeReference->GetX()];
+		snakeCell[0]->SetId(snakeIcon);
 		return 1;
 	}
 }
@@ -57,11 +67,23 @@ void GameMap::SetRandomAppleCell()
 {
 	int randX, randY;
 	srand(time(NULL));
+	bool canSetApple = false;
+
 	do
 	{
 		AppleCell = &cells[randX = rand() % 28 + 1][randY = rand() % 78 + 1];
-	} while (AppleCell == snakeCell);
+	} while (EvaluateAppelCell(AppleCell));
 	AppleCell->SetId('A');
+}
+
+bool GameMap::EvaluateAppelCell(MapCell* theCell)
+{
+	int snakeLength = snakeReference->GetSnakeLength();
+	for (int i = 0; i < snakeLength + 1; i++)
+	{
+		if (theCell == snakeCell[i]) return true;
+	}
+	return false;
 }
 
 void GameMap::LoadMapFromFile()
@@ -80,8 +102,8 @@ void GameMap::LoadMapFromFile()
 				{
 					cells[row][i].SetId(' ');
 					snakeReference->SetPosition(i, row);
-					snakeCell = &cells[snakeReference->GetY()][snakeReference->GetX()];
-					snakeCell->SetId(snakeReference->GetIcon());
+					snakeCell[snakeReference->GetSnakeLength()] = &cells[snakeReference->GetY()][snakeReference->GetX()];
+					snakeCell[snakeReference->GetSnakeLength()]->SetId(snakeReference->GetIcon());
 					//snakeCell->SetId(line[i]);
 				}
 				else

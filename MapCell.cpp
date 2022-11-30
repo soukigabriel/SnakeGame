@@ -23,3 +23,8 @@ bool MapCell::IsApple()
 {
 	return id == 'A' ? true : false;
 }
+
+bool MapCell::IsSnake()
+{
+	return id == 'o' ? true : false;
+}
