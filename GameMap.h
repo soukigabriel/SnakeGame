@@ -7,8 +7,10 @@ class GameMap
 public:
 	GameMap(Snake* newSnakeReference);
 	void DrawMap();
+	void DrawHUD();
 	void LoadMapFromFile();
 	bool DrawMainMenu();
+	void DrawGameOver();
 	bool GetMenuInput(char key, char charToFalse);
 	MapCell cells[30][80];
 

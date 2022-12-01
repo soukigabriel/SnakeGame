@@ -12,8 +12,11 @@ public:
 	int GetDirection(int index);
 	int GetSnakeLength();
 	void IncreaseSnakeLenth();
+	int GetScore();
+	void IncreaseScore();
 
 protected:
+	int score = 0;
 	int snakeLength = 0;
 	int x, y;
 	char icon = 'o';

@@ -47,10 +47,9 @@ int main()
 				break;
 			}
 		}
+		map.DrawGameOver();
 	}
 
-
-	cout << "Game over" << endl;
 
 	return 0;
 }

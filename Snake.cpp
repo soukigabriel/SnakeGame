@@ -110,3 +110,12 @@ void Snake::IncreaseSnakeLenth()
 {
 	snakeLength++;
 }
+
+int Snake::GetScore() {
+	return score;
+}
+
+void Snake::IncreaseScore()
+{
+	score++;
+}

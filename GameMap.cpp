@@ -19,6 +19,9 @@ GameMap::GameMap(Snake* newSnakeReference)
 void GameMap::DrawMap()
 {
 	system("cls");
+
+	DrawHUD();
+
 	for (int i = 0; i < 30; i++)
 	{
 		for (int j = 0; j < 80; j++)
@@ -27,6 +30,22 @@ void GameMap::DrawMap()
 		}
 		cout << endl;
 	}
+}
+
+void GameMap::DrawHUD()
+{
+	cout << endl;
+	cout << endl;
+	cout << "			SCORE: " << snakeReference->GetScore() << endl;
+	cout << endl;
+}
+
+void GameMap::DrawGameOver()
+{
+	cout << endl;
+	cout << "						YOUR FINAL SCORE: " << snakeReference->GetScore() << endl;
+	cout << endl;
+	cout << "						 THANKS FOR PLAYING :)" << endl;
 }
 
 int GameMap::SetSnakeCell(char snakeIcon)
@@ -39,6 +58,7 @@ int GameMap::SetSnakeCell(char snakeIcon)
 	{
 		if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsApple())
 		{
+			snakeReference->IncreaseScore();
 			snakeReference->IncreaseSnakeLenth();
 			snakeCell[snakeReference->GetSnakeLength()] = snakeCell[snakeReference->GetSnakeLength() - 1];
 			SetRandomAppleCell();
