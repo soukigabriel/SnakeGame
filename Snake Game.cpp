@@ -12,18 +12,8 @@ using namespace std;
 
 int main()
 {
-	//char c = ' ';
-	//while (c != 'x')
-	//{
-	//	cin >> c;
-	//	cout << c << endl;
-	//}
-
-	//for (int i = 0; i < 256; i++)
-	//{
-	//	char c = i;
-	//	cout << i << ": " << c << endl;
-	//}
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 
 	Snake mySnake;
 	GameMap map(&mySnake);
@@ -40,7 +30,7 @@ int main()
 				break;
 			case 1:
 				map.DrawMap();
-				Sleep(150);
+				Sleep(map.GetSleepTime());
 				mySnake.GetInput();
 				break;
 			default:

@@ -24,7 +24,7 @@ void GameMap::DrawMap()
 
 	for (int i = 0; i < 30; i++)
 	{
-		for (int j = 0; j < 80; j++)
+		for (int j = 0; j < 30; j++)
 		{
 			cout << cells[i][j].GetId() << ' ';
 		}
@@ -43,9 +43,9 @@ void GameMap::DrawHUD()
 void GameMap::DrawGameOver()
 {
 	cout << endl;
-	cout << "						YOUR FINAL SCORE: " << snakeReference->GetScore() << endl;
+	cout << "			YOUR FINAL SCORE: " << snakeReference->GetScore() << endl;
 	cout << endl;
-	cout << "						 THANKS FOR PLAYING :)" << endl;
+	cout << "		   THANKS FOR PLAYING :)" << endl;
 }
 
 int GameMap::SetSnakeCell(char snakeIcon)
@@ -58,6 +58,15 @@ int GameMap::SetSnakeCell(char snakeIcon)
 	{
 		if (cells[snakeReference->GetY() + snakeReference->GetDirection(1)][snakeReference->GetX() + snakeReference->GetDirection(0)].IsApple())
 		{
+			if (GetSleepTime() > 100)
+			{
+				DecreaseSleepTime();
+			}
+			if (GetSleepTime() > 1)
+			{
+				DecreaseSleepTime();
+				DecreaseSleepTime();
+			}
 			snakeReference->IncreaseScore();
 			snakeReference->IncreaseSnakeLenth();
 			snakeCell[snakeReference->GetSnakeLength()] = snakeCell[snakeReference->GetSnakeLength() - 1];
@@ -65,10 +74,6 @@ int GameMap::SetSnakeCell(char snakeIcon)
 		}
 
 		int snakeLength = snakeReference->GetSnakeLength();
-		//if (snakeCell != NULL)
-		//{
-		//	snakeCell[snakeLength]->SetId(' ');
-		//}
 		
 		snakeCell[snakeLength]->SetId(' ');
 
@@ -93,7 +98,7 @@ void GameMap::SetRandomAppleCell()
 
 	do
 	{
-		AppleCell = &cells[randX = rand() % 28 + 1][randY = rand() % 78 + 1];
+		AppleCell = &cells[randX = rand() % 28 + 1][randY = rand() % 28 + 1];
 	} while (EvaluateAppelCell(AppleCell));
 	AppleCell->SetId('A');
 }
@@ -126,7 +131,6 @@ void GameMap::LoadMapFromFile()
 					snakeReference->SetPosition(i, row);
 					snakeCell[snakeReference->GetSnakeLength()] = &cells[snakeReference->GetY()][snakeReference->GetX()];
 					snakeCell[snakeReference->GetSnakeLength()]->SetId(snakeReference->GetIcon());
-					//snakeCell->SetId(line[i]);
 				}
 				else
 				{
@@ -181,4 +185,13 @@ bool GameMap::GetIsGameOver()
 void GameMap::SetIsGameOver(bool gameOverState)
 {
 	isGameOver = gameOverState;
+}
+
+int GameMap::GetSleepTime() {
+	return sleepTime;
+}
+
+void GameMap::DecreaseSleepTime()
+{
+	sleepTime--;
 }

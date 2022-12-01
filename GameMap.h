@@ -12,7 +12,7 @@ public:
 	bool DrawMainMenu();
 	void DrawGameOver();
 	bool GetMenuInput(char key, char charToFalse);
-	MapCell cells[30][80];
+	MapCell cells[30][30];
 
 	int SetSnakeCell(char snakeIcon);
 	Snake* snakeReference;
@@ -25,7 +25,11 @@ public:
 	bool GetIsGameOver();
 	void SetIsGameOver(bool gameOverState);
 
+	int GetSleepTime();
+	void DecreaseSleepTime();
+
 protected:
+	int sleepTime = 150;
 	bool isGameOver = false;
 };
 
