@@ -8,6 +8,8 @@ public:
 	GameMap(Snake* newSnakeReference);
 	void DrawMap();
 	void LoadMapFromFile();
+	bool DrawMainMenu();
+	bool GetMenuInput(char key, char charToFalse);
 	MapCell cells[30][80];
 
 	int SetSnakeCell(char snakeIcon);

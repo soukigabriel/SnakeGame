@@ -28,24 +28,27 @@ int main()
 	Snake mySnake;
 	GameMap map(&mySnake);
 
-
-	while (!map.GetIsGameOver())
+	if (map.DrawMainMenu())
 	{
-		switch (map.SetSnakeCell(mySnake.GetIcon()))
+		while (!map.GetIsGameOver())
 		{
-		case 0:
-			map.SetIsGameOver(true);
-			continue;
-			break;
-		case 1:
+			switch (map.SetSnakeCell(mySnake.GetIcon()))
+			{
+			case 0:
+				map.SetIsGameOver(true);
+				continue;
+				break;
+			case 1:
 				map.DrawMap();
 				Sleep(150);
 				mySnake.GetInput();
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
+			}
 		}
 	}
+
 
 	cout << "Game over" << endl;
 

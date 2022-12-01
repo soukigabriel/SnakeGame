@@ -3,6 +3,8 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+#include <conio.h>
+#include <cctype>
 
 
 using namespace std;
@@ -118,6 +120,37 @@ void GameMap::LoadMapFromFile()
 	{
 		cout << "ERROR: MAP FILE COULD NOT BE LOADED" << endl;
 	}
+}
+
+bool GameMap::DrawMainMenu()
+{
+	int row = 0;
+	string line;
+	ifstream mainMenuFile("MainMenu.txt");
+
+	if (mainMenuFile.is_open()) 
+	{
+		while (getline(mainMenuFile, line))
+		{
+			cout << line << endl;
+		}
+		char input = _getch();
+		return GetMenuInput(input, 'e');
+	}
+	else
+	{
+		cout << "ERROR: MAIN MENU FILE COULD NOT BE LOADED" << endl;
+		return false;
+	}
+}
+
+bool GameMap::GetMenuInput(char key, char charToFalse)
+{
+	if (key == toupper(charToFalse) || key == tolower(charToFalse))
+	{
+		return false;
+	}
+	return true;
 }
 
 bool GameMap::GetIsGameOver()
